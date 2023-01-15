@@ -1,0 +1,1149 @@
+[
+    {
+        "id": "d656b4e4b7bf84a7",
+        "type": "tab",
+        "label": "Read Data",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bff5bd7d324fcdf3",
+        "type": "inject",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "b6a4001dcf4a9c8e",
+                "46d7cc9a4eb824f9"
+            ]
+        ]
+    },
+    {
+        "id": "b6a4001dcf4a9c8e",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40001 - 40009",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 1 , 'quantity': 9 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 340,
+        "wires": [
+            [
+                "5ba8d66e839256b3"
+            ]
+        ]
+    },
+    {
+        "id": "5ba8d66e839256b3",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 340,
+        "wires": [
+            [
+                "eb95394762a301a4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "365bc6fb7375a60e",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40011 - 40014",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 11, 'quantity': 4 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 460,
+        "wires": [
+            [
+                "3eb8747168b3ba91"
+            ]
+        ]
+    },
+    {
+        "id": "021f6ead332596f0",
+        "type": "delay",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 400,
+        "wires": [
+            [
+                "365bc6fb7375a60e"
+            ]
+        ]
+    },
+    {
+        "id": "3eb8747168b3ba91",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 460,
+        "wires": [
+            [
+                "ee2534c1b4e9ec86"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b2096def5a5a77dc",
+        "type": "file",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 960,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "589081758396b7d8",
+        "type": "simpletime",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mydate": false,
+        "myymd": false,
+        "myyear": true,
+        "mymonth": true,
+        "mymonthn": false,
+        "mydom": true,
+        "mydoy": true,
+        "myday": false,
+        "myhourpm": false,
+        "myhour": false,
+        "mytime": false,
+        "mytimes": false,
+        "myminute": false,
+        "myminutes": false,
+        "mysecond": false,
+        "mymillis": false,
+        "myepoch": false,
+        "myrawdate": false,
+        "mypm": false,
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "1b8aa5d357c2cb8b"
+            ]
+        ]
+    },
+    {
+        "id": "0c1ddb3c297b252a",
+        "type": "debug",
+        "z": "d656b4e4b7bf84a7",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1b8aa5d357c2cb8b",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Create File",
+        "func": "var path = \"/home/wahyudi/Documents/\";\nmsg.filename = path + msg.mydom + \"-\" + msg.mymonth +\"-\"+msg.myyear + \".csv\";\nmsg.payload = \"Time,Vph(A),Vph(B),Vph(C),Vab,Vbc,Vca,Iph(A),Iph(B),Iph(C),Ptotal,Qtotal,P.F.total,Pph(A),Pph(B),Pph(C),Qph(A),Qph(B),Qph(C),P.F(A),P.F(B),P.F(C),Frequency,Sph(A),Sph(B),Sph(C),Stotal\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 100,
+        "wires": [
+            [
+                "b2096def5a5a77dc",
+                "0c1ddb3c297b252a"
+            ]
+        ]
+    },
+    {
+        "id": "62ee1f787ba13b3b",
+        "type": "cronplus",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "outputField": "payload",
+        "timeZone": "",
+        "persistDynamic": false,
+        "commandResponseMsgOutput": "output1",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "0 0 0 * * ? *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "589081758396b7d8"
+            ]
+        ]
+    },
+    {
+        "id": "d024a41a564f9af9",
+        "type": "file",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2760,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a6222cb2a6ee953",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40015",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 15, 'quantity': 1 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "b5f4a4bf23157382"
+            ]
+        ]
+    },
+    {
+        "id": "b5f4a4bf23157382",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 580,
+        "wires": [
+            [
+                "cc24c9e433f0b8e3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "983075925606b458",
+        "type": "delay",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 520,
+        "wires": [
+            [
+                "7a6222cb2a6ee953"
+            ]
+        ]
+    },
+    {
+        "id": "03892cf570784340",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40016 - 40024",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 16 , 'quantity': 9 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 700,
+        "wires": [
+            [
+                "1ee3d934a732674d"
+            ]
+        ]
+    },
+    {
+        "id": "753660ce6ca5f7d5",
+        "type": "delay",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 640,
+        "wires": [
+            [
+                "03892cf570784340"
+            ]
+        ]
+    },
+    {
+        "id": "1ee3d934a732674d",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 700,
+        "wires": [
+            [
+                "97548883b9d0dea4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "af66909b97b47ab9",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40025",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 25 , 'quantity': 1 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 820,
+        "wires": [
+            [
+                "848f2bfee0d1a4f2"
+            ]
+        ]
+    },
+    {
+        "id": "848f2bfee0d1a4f2",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 820,
+        "wires": [
+            [
+                "86f6e3878940ae95"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "46d032bc1879215e",
+        "type": "delay",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 760,
+        "wires": [
+            [
+                "af66909b97b47ab9"
+            ]
+        ]
+    },
+    {
+        "id": "c429f30a0c82e4f9",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40047 - 40049",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 47 , 'quantity': 3 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 940,
+        "wires": [
+            [
+                "2a66d39f66d1a146"
+            ]
+        ]
+    },
+    {
+        "id": "2a66d39f66d1a146",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 940,
+        "wires": [
+            [
+                "5dd4d59f0c382f1d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "80f0f62be06a7867",
+        "type": "delay",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 1000,
+        "wires": [
+            [
+                "4c11f7f388c5f0d1"
+            ]
+        ]
+    },
+    {
+        "id": "ca41b64ba38a3061",
+        "type": "delay",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 880,
+        "wires": [
+            [
+                "c429f30a0c82e4f9"
+            ]
+        ]
+    },
+    {
+        "id": "4c11f7f388c5f0d1",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "address 40050 - 40051",
+        "func": "msg.payload = { 'fc': 3, 'unitid': 1, 'address': 50 , 'quantity': 2 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1060,
+        "wires": [
+            [
+                "797c4a9acb0f5940"
+            ]
+        ]
+    },
+    {
+        "id": "797c4a9acb0f5940",
+        "type": "modbus-flex-getter",
+        "z": "d656b4e4b7bf84a7",
+        "name": "Modbus Flexible Read",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "4483385.85f9ac8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 940,
+        "y": 1060,
+        "wires": [
+            [
+                "fb7a53426ff93204"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "eb95394762a301a4",
+        "type": "split",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1170,
+        "y": 340,
+        "wires": [
+            [
+                "94d00aec56c2f721"
+            ]
+        ]
+    },
+    {
+        "id": "97548883b9d0dea4",
+        "type": "split",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1170,
+        "y": 700,
+        "wires": [
+            [
+                "0fb2321545dad889"
+            ]
+        ]
+    },
+    {
+        "id": "5dd4d59f0c382f1d",
+        "type": "split",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1170,
+        "y": 940,
+        "wires": [
+            [
+                "804ddfa5c7f83203"
+            ]
+        ]
+    },
+    {
+        "id": "46d7cc9a4eb824f9",
+        "type": "simpletime",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mydate": false,
+        "myymd": false,
+        "myyear": false,
+        "mymonth": false,
+        "mymonthn": false,
+        "mydom": false,
+        "mydoy": false,
+        "myday": false,
+        "myhourpm": false,
+        "myhour": false,
+        "mytime": false,
+        "mytimes": true,
+        "myminute": false,
+        "myminutes": false,
+        "mysecond": false,
+        "mymillis": false,
+        "myepoch": false,
+        "myrawdate": false,
+        "mypm": false,
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "fc2de4b432fdba1e"
+            ]
+        ]
+    },
+    {
+        "id": "fc2de4b432fdba1e",
+        "type": "change",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "mytimes",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 280,
+        "wires": [
+            [
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "010b5d0905e7df96",
+        "type": "join",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ",",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1610,
+        "y": 640,
+        "wires": [
+            [
+                "20ea98aea3ca6586"
+            ]
+        ]
+    },
+    {
+        "id": "ee2534c1b4e9ec86",
+        "type": "change",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$string(payload[0] * 256 + payload[1]) & \",\" & $string(payload[2] * 256 + payload[3]) ",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 460,
+        "wires": [
+            [
+                "983075925606b458",
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "cc24c9e433f0b8e3",
+        "type": "change",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$string(payload[0])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 580,
+        "wires": [
+            [
+                "753660ce6ca5f7d5",
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "86f6e3878940ae95",
+        "type": "change",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$string(payload[0])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 820,
+        "wires": [
+            [
+                "ca41b64ba38a3061",
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "fb7a53426ff93204",
+        "type": "change",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$string(payload[0] * 256 + payload[1])\t",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "complete",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 1060,
+        "wires": [
+            [
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "50a23ed50db08ba1",
+        "type": "function",
+        "z": "d656b4e4b7bf84a7",
+        "name": "function 4",
+        "func": "var path = \"/home/wahyudi/Documents/\";\nmsg.filename = path + msg.mydom + \"-\" + msg.mymonth +\"-\"+msg.myyear + \".csv\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1980,
+        "y": 640,
+        "wires": [
+            [
+                "a4365f5cf927bc8e",
+                "ced3bf3a1cda7f86"
+            ]
+        ]
+    },
+    {
+        "id": "20ea98aea3ca6586",
+        "type": "simpletime",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mydate": false,
+        "myymd": false,
+        "myyear": true,
+        "mymonth": true,
+        "mymonthn": false,
+        "mydom": true,
+        "mydoy": true,
+        "myday": false,
+        "myhourpm": false,
+        "myhour": false,
+        "mytime": false,
+        "mytimes": false,
+        "myminute": false,
+        "myminutes": false,
+        "mysecond": false,
+        "mymillis": false,
+        "myepoch": false,
+        "myrawdate": false,
+        "mypm": false,
+        "x": 1790,
+        "y": 640,
+        "wires": [
+            [
+                "50a23ed50db08ba1"
+            ]
+        ]
+    },
+    {
+        "id": "6ab17bf0b909d6d9",
+        "type": "catch",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "scope": [
+            "a4365f5cf927bc8e"
+        ],
+        "uncaught": false,
+        "x": 350,
+        "y": 180,
+        "wires": [
+            [
+                "589081758396b7d8"
+            ]
+        ]
+    },
+    {
+        "id": "a4365f5cf927bc8e",
+        "type": "file in",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2180,
+        "y": 560,
+        "wires": [
+            [
+                "274fbae5ddc6aa68"
+            ]
+        ]
+    },
+    {
+        "id": "ced3bf3a1cda7f86",
+        "type": "q-gate",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "queueing",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "queueCmd": "queue",
+        "defaultCmd": "default",
+        "triggerCmd": "trigger",
+        "flushCmd": "flush",
+        "resetCmd": "reset",
+        "peekCmd": "peek",
+        "dropCmd": "drop",
+        "statusCmd": "status",
+        "maxQueueLength": "0",
+        "keepNewest": false,
+        "qToggle": false,
+        "persist": false,
+        "storeName": "memory",
+        "x": 2550,
+        "y": 640,
+        "wires": [
+            [
+                "d024a41a564f9af9"
+            ]
+        ]
+    },
+    {
+        "id": "274fbae5ddc6aa68",
+        "type": "change",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "flush",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2360,
+        "y": 560,
+        "wires": [
+            [
+                "ced3bf3a1cda7f86"
+            ]
+        ]
+    },
+    {
+        "id": "94d00aec56c2f721",
+        "type": "join",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ",",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 340,
+        "wires": [
+            [
+                "021f6ead332596f0",
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "0fb2321545dad889",
+        "type": "join",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ",",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1310,
+        "y": 700,
+        "wires": [
+            [
+                "46d032bc1879215e",
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "804ddfa5c7f83203",
+        "type": "join",
+        "z": "d656b4e4b7bf84a7",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ",",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1310,
+        "y": 940,
+        "wires": [
+            [
+                "80f0f62be06a7867",
+                "010b5d0905e7df96"
+            ]
+        ]
+    },
+    {
+        "id": "4483385.85f9ac8",
+        "type": "modbus-client",
+        "name": "local",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": false,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "8502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": false,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": false
+    }
+]
