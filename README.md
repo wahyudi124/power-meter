@@ -11,4 +11,5 @@ Collect Data From Power Meter to nodered
 
 Result 
 
-https://github.com/wahyudi124/power-meter/blob/main/21-Oct-2022.csv
+[Book1.xlsx](https://github.com/wahyudi124/power-meter/files/10420260/Book1.xlsx)
+
